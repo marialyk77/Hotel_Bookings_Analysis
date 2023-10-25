@@ -1,0 +1,115 @@
+CREATE TABLE [dbo].[FactHotelBookings](
+	[TypeHotelID] [int] NULL,
+	[ReservationStatusID] [int] NULL,
+	[CustomerTypeID] [int] NULL,
+	[DepositTypeID] [int] NULL,
+	[Reserved_RoomTypeID] [int] NULL,
+	Assigned_RoomTypeID int,
+	[CountryID] [int] NULL,
+	[Market_SegmentID] [int] NULL,
+	Distribution_channel_id int, 
+	[MealTypeID] [int] NULL,
+	[arrival_date_year] [int] NULL,
+	[arrival_date_month] varchar(50),
+	arrival_date_day_of_month tinyint,
+	[arrival_date_week_number] tinyint,
+	[ReservationStatusDate] [datetime2](7) NULL,
+	is_canceled bit,
+	lead_time smallint,
+	stays_in_weekend_nights tinyint,
+	stays_in_week_nights tinyint,
+	adults tinyint,
+	children smallint,
+	babies tinyint, 
+	is_repeated_guest tinyint,
+	previous_cancellations tinyint,
+	previous_bookings_not_cancelled tinyint, 
+	booking_changes tinyint, 
+	agent smallint, 
+	company smallint, 
+	days_in_waiting_list smallint, 
+	adr smallint, 
+	required_car_parking_spaces tinyint, 
+	total_of_special_requests tinyint
+
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimCountryID] FOREIGN KEY([CountryID])
+REFERENCES [dbo].[DimCountry] ([CountryID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimCountryID]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimCustomerType] FOREIGN KEY([CustomerTypeID])
+REFERENCES [dbo].[DimCustomerType] ([CustomerTypeID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimCustomerType]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimDepositType] FOREIGN KEY([DepositTypeID])
+REFERENCES [dbo].[DimDepositType] ([DepositTypeID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimDepositType]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimHotelType] FOREIGN KEY([TypeHotelID])
+REFERENCES [dbo].[DimHotelType] ([HotelTypeID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimHotelType]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimMealType] FOREIGN KEY([MealTypeID])
+REFERENCES [dbo].[DimMealType] ([MealTypeID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimMealType]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimReservationStatus] FOREIGN KEY([ReservationStatusID])
+REFERENCES [dbo].[DimReservationStatus] ([ReservationStatusID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimReservationStatus]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimRoomType] FOREIGN KEY([RoomTypeID])
+REFERENCES [dbo].[DimRoomType] ([RoomTypeID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimRoomType]
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings]  WITH CHECK ADD  CONSTRAINT [FK_FactHotelBookings_DimSegment] FOREIGN KEY([SegmentID])
+REFERENCES [dbo].[DimSegment] ([SegmentID])
+GO
+
+ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_DimSegment]
+GO
+
+
+select HotelTypeID,ReservationStatusID,CustomerTypeID, DepositTypeID,
+RTRes.Room_Type_ID as Reserved_roomtypeID,RTas.Room_Type_ID as Assigned_roomtypeID,CountryID,s_market.SegmentID as Market_SegmentID,
+s_ds_chnl.SegmentID as Distribution_Chaneel_id,MealTypeID,
+arrival_date_year,arrival_date_month,arrival_date_day_of_month,arrival_date_week_number,reservation_status_date,
+is_canceled,lead_time,stays_in_weekend_nights,stays_in_week_nights,replace(adults, 'Null',0) as adults, replace(children, 'NA',0) as children,
+replace(babies, 'Null', 0) as babies,is_repeated_guest,previous_cancellations,previous_bookings_not_canceled,
+booking_changes, replace(agent, 'Null', 0) as agent, replace(company, 'Null', 0) AS company,days_in_waiting_list, replace(adr, 'Null', 0) as adr,
+required_car_parking_spaces,total_of_special_requests 
+into FactHotelBookings
+from hotel_bookings as A
+LEFT join DimHotelType as B on A.hotel = B.HoteltypeDescr
+join DimReservationStatus as R on A.reservation_status = R.ReservationStatusDescr
+left join DimCustomerType as C on A.customer_type = C.CustomerTypeDescr
+LEFT join DimDepositType as D on A. deposit_type = D.DepositTypeDescr
+left join DimRoomType as RTRes on A.reserved_room_type = RTRes.Type
+left join DimRoomType as RTas on A.assigned_room_type = RTas.Type
+join DimCountry as Cou on A.country = Cou.CountryDescr 
+left join DimSegment s_market on A.market_segment = s_market.SegmentDescr
+left join DimSegment s_ds_chnl on A.distribution_channel = s_ds_chnl. SegmentDescr
+LEFT join DimMealType as Mea on A.meal = Mea.MealTypeDescr
+

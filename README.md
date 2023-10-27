@@ -28,7 +28,6 @@ Tools used for the analysis.
 1. SQL server
 2. Power BI
    
-Power BI file is available under the link: https://drive.google.com/file/d/1_mQ7oJijFpoYmnxo8p4rC3lKnDfDh0j0/view?usp=drive_link 
 
 Overall, the data was complete, correct, relevant to the business objectives, and did not present any significant flaws.
 
@@ -93,13 +92,13 @@ d.	In stark contrast, Contract guests have a pronounced tendency to cancel, with
 
 e.	In terms of loyalty, from highest to lowest:
 
-Group Guests
+     I. Group Guests
 
-Transient Guests
+    II. Transient Guests
 
-Transient-Party Guests
+    III. Transient-Party Guests
 
-Contract Guests.
+    IV. Contract Guests
 
 XIII.	 From a customer experience perspective, 59.21% of Transient guests choose the Bed & Breakfast option, a trend also seen among guests traveling with children. Additionally, Transient customers are prominent in their special requests, especially in their frequent need for car parking.
 

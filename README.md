@@ -37,7 +37,7 @@ Overall, the data was complete, correct, relevant to the business objectives, an
 
 I. The total number of transactions is 119.390, among which 66.45% were for City Hotel and 33.55% for the Resort Hotel. 
       
-II.Transient customers make up the bold of the total transactions for both hotels. 49.76% for City Hotel and 25.3% for the Resort Hotel. 
+II. Transient customers make up the bulk of the total transactions for both hotels: 49.76% for City Hotel and 25.3% for the Resort Hotel.
       
 III:  Approximately 40.69% of transactions are coming from Portugal. 
   

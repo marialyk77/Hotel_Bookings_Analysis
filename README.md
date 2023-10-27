@@ -3,10 +3,8 @@ This analysis pertains to the Hotel Booking dataset sourced from Kaggle. The stu
 
 This dataset comprises 119,390 entries for both a City Hotel and a Resort Hotel. Every entry signifies a hotel reservation made between July 1, 2015, and August 31, 2017, encompassing both successfully completed stays and those that were canceled.
 
-Research objectives: 
-•	Evaluate strategies to enhance revenue.
-•	Investigate monthly booking trends. 
-•	Examine cancellation patterns, revenue flows, and customer behaviors.
+Research objectives: Evaluate strategies to enhance revenue.
+
 
 🔗 Data location: The data is stored as csv files available by Kaggle [https://www.kaggle.com/datasets/mojtaba142/hotel-booking].
 
@@ -29,6 +27,8 @@ Research objectives:
 Tools used for the analysis.
 1. SQL server
 2. Power BI
+   
+Power BI file is available under the link: https://drive.google.com/file/d/1_mQ7oJijFpoYmnxo8p4rC3lKnDfDh0j0/view?usp=drive_link 
 
 Overall, the data was complete, correct, relevant to the business objectives, and did not present any significant flaws.
 
@@ -126,5 +126,5 @@ XIII.	 From a customer experience perspective, 59.21% of Transient guests choose
              VII.	Service Expansion: Given the observed preference for Bed & Breakfast among various customer types, expanding or enhancing this service can capitalize on its popularity. Implementing a feedback mechanism is an excellent recommendation; understanding guest experiences can inform future decisions.
 
 
-
+Power BI file is available under the link: https://drive.google.com/file/d/1_mQ7oJijFpoYmnxo8p4rC3lKnDfDh0j0/view?usp=drive_link 
 

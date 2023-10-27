@@ -52,29 +52,29 @@ VIII.	There's a notable spike in cancellations from Thursday through Saturday, i
 
 IX.	In a comprehensive examination of hotel booking dynamics, distinct patterns emerge: 
 
-a.	🏩 Booking Segment Insights:
+   a.	🏩 Booking Segment Insights:
 
-•	Online TA dominates both in terms of revenue and transaction count.
+      •	Online TA dominates both in terms of revenue and transaction count.
 
-•	Offline TA/TO remains a substantial contributor.
+      •	Offline TA/TO remains a substantial contributor.
 
-•	Direct bookings account for over a tenth of all bookings, suggesting possible influence from loyalty incentives.
+      •	Direct bookings account for over a tenth of all bookings, suggesting possible influence from loyalty incentives.
 
-•	Groups showcase an interesting dynamic with high transaction volume but a lower corresponding revenue, pointing to potential differential pricing or discounted bookings.
+      •	Groups showcase an interesting dynamic with high transaction volume but a lower corresponding revenue, pointing to potential differential pricing or discounted bookings.
 
-b.💸 Monthly Revenue Dynamics:
+   b.💸 Monthly Revenue Dynamics:
 
-•	August stands out as the revenue pinnacle.
+      •	August stands out as the revenue pinnacle.
 
-•	A significant revenue contraction is evident transitioning from August to September.
+      •	A significant revenue contraction is evident transitioning from August to September.
 
-•	December witnesses a commendable 12.5% revenue augmentation compared to November, despite its placement towards the year-end.
+      •	December witnesses a commendable 12.5% revenue augmentation compared to November, despite its placement towards the year-end.
 
-c.💡 Transaction vs. Revenue Discrepancy in October:
+  c.💡 Transaction vs. Revenue Discrepancy in October:
 
-•	There's an upward trend in October's transactions by 6.2% from September.
+      •	There's an upward trend in October's transactions by 6.2% from September.
 
-•	Contrarily, October's revenue underperforms September's by a notable 19.35%, suggesting potential variations in the nature or value of bookings during this month. 
+      •	Contrarily, October's revenue underperforms September's by a notable 19.35%, suggesting potential variations in the nature or value of bookings during this month. 
 
 X.	Analyzing the stay patterns reveals distinguishing behaviors between Transient and Contract customers. Transient customers, while more numerous, generally exhibit a preference for shorter stays. Their sheer volume, combined with these brief durations, likely depresses their average stay duration. In contrast, Contract customers demonstrate a consistent inclination towards longer stays, suggesting their engagements or commitments at the hotel span a more extended period.
 
@@ -82,23 +82,24 @@ XI.	When examining the patterns of weekday versus weekend stays by customer type
 
 XII.	Upon examining guest loyalty and booking trends segmented by customer type:
 
-a.	Transient guests showcase a significant number of cancellations (6,650) yet still achieve a high completion rate with 14,648 bookings.
+         • Transient guests showcase a significant number of cancellations (6,650) yet still achieve a high completion rate with 14,648 bookings.
+         
+         •	Transient-Party guests tend to cancel more than they complete their bookings.
+         
+         •	Group guests display an impressive loyalty, with a high number of completed bookings against a backdrop of very few cancellations.
+         
+         •	In stark contrast, Contract guests have a pronounced tendency to cancel, with cancellations significantly outnumbering completed bookings.
+         
+         •	In terms of loyalty, from highest to lowest:
 
-b.	Transient-Party guests tend to cancel more than they complete their bookings.
 
-c.	Group guests display an impressive loyalty, with a high number of completed bookings against a backdrop of very few cancellations.
+            I. Group Guests
 
-d.	In stark contrast, Contract guests have a pronounced tendency to cancel, with cancellations significantly outnumbering completed bookings.
+            II. Transient Guests
 
-e.	In terms of loyalty, from highest to lowest:
+            III. Transient-Party Guests
 
-     I. Group Guests
-
-    II. Transient Guests
-
-    III. Transient-Party Guests
-
-    IV. Contract Guests
+            IV. Contract Guests
 
 XIII.	 From a customer experience perspective, 59.21% of Transient guests choose the Bed & Breakfast option, a trend also seen among guests traveling with children. Additionally, Transient customers are prominent in their special requests, especially in their frequent need for car parking.
 

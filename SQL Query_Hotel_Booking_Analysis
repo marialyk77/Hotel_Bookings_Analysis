@@ -178,6 +178,13 @@ left join DimSegment s_market on A.market_segment = s_market.SegmentDescr
 left join DimSegment s_ds_chnl on A.distribution_channel = s_ds_chnl. SegmentDescr
 LEFT join DimMealType as Mea on A.meal = Mea.MealTypeDescr
 
+
+ALTER TABLE FactHotelBookings ALTER COLUMN agent INT;
+
+ALTER TABLE FactHotelBookings ALTER COLUMN adr FLOAT;
+
+ALTER TABLE FactHotelBookings ALTER COLUMN adults INT;
+
 ---I HAVE TO RE-CREATE THE dim RESERVED ROOM Type:  
 --- Creating the Dim Room Type ID , There was a problem because Both reserved and assigned room types had the same codes and in order to create the Dim Room Type ID 
 ---and to ensure that unique values are counted, The following code was used to correct for the dublicate values:

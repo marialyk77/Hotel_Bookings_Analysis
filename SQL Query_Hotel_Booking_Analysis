@@ -92,46 +92,6 @@ ALTER TABLE [dbo].[FactHotelBookings] CHECK CONSTRAINT [FK_FactHotelBookings_Dim
 GO
 
 
-select HotelTypeID,ReservationStatusID,CustomerTypeID, DepositTypeID,
-RTRes.Room_Type_ID as Reserved_roomtypeID,RTas.Room_Type_ID as Assigned_roomtypeID,CountryID,s_market.SegmentID as Market_SegmentID,
-s_ds_chnl.SegmentID as Distribution_Chaneel_id,MealTypeID,
-arrival_date_year,arrival_date_month,arrival_date_day_of_month,arrival_date_week_number,reservation_status_date,
-is_canceled,lead_time,stays_in_weekend_nights,stays_in_week_nights,replace(adults, 'Null',0) as adults, replace(children, 'NA',0) as children,
-replace(babies, 'Null', 0) as babies,is_repeated_guest,previous_cancellations,previous_bookings_not_canceled,
-booking_changes, replace(agent, 'Null', 0) as agent, replace(company, 'Null', 0) AS company,days_in_waiting_list, replace(adr, 'Null', 0) as adr,
-required_car_parking_spaces,total_of_special_requests 
-into FactHotelBookings
-from hotel_bookings as A
-LEFT join DimHotelType as B on A.hotel = B.HoteltypeDescr
-join DimReservationStatus as R on A.reservation_status = R.ReservationStatusDescr
-left join DimCustomerType as C on A.customer_type = C.CustomerTypeDescr
-LEFT join DimDepositType as D on A. deposit_type = D.DepositTypeDescr
-left join DimRoomType as RTRes on A.reserved_room_type = RTRes.Type
-left join DimRoomType as RTas on A.assigned_room_type = RTas.Type
-join DimCountry as Cou on A.country = Cou.CountryDescr 
-left join DimSegment s_market on A.market_segment = s_market.SegmentDescr
-left join DimSegment s_ds_chnl on A.distribution_channel = s_ds_chnl. SegmentDescr
-LEFT join DimMealType as Mea on A.meal = Mea.MealTypeDescr
-
----I HAVE TO RE-CREATE THE dim RESERVED ROOM Type:  
---- Creating the Dim Room Type ID , There was a problem because Both reserved and assigned room types had the same codes and in order to create the Dim Room Type ID 
----and to ensure that unique values are counted, The following code was used to correct for the dublicate values:
-
-create table DimRoomType (
-room_type_id smallint identity(1,1),
-type varchar(10)
-);
-with t as (
-select distinct reserved_room_type as room_type
-from hotel_bookings
-union
-select distinct assigned_room_type
-from hotel_bookings
-)
-insert into DimRoomType
-select distinct room_type
-from t
-
 INSERT INTO DimSegment VALUES(0,'Unknown')
 
 SELECT * 
@@ -195,7 +155,49 @@ FROM DimSegment
 UNION
 SELECT 0, 'Unknown'
 
-select * from DimSegment
+
+
+select HotelTypeID,ReservationStatusID,CustomerTypeID, DepositTypeID,
+RTRes.Room_Type_ID as Reserved_roomtypeID,RTas.Room_Type_ID as Assigned_roomtypeID,CountryID,s_market.SegmentID as Market_SegmentID,
+s_ds_chnl.SegmentID as Distribution_Chaneel_id,MealTypeID,
+arrival_date_year,arrival_date_month,arrival_date_day_of_month,arrival_date_week_number,reservation_status_date,
+is_canceled,lead_time,stays_in_weekend_nights,stays_in_week_nights,replace(adults, 'Null',0) as adults, replace(children, 'NA',0) as children,
+replace(babies, 'Null', 0) as babies,is_repeated_guest,previous_cancellations,previous_bookings_not_canceled,
+booking_changes, replace(agent, 'Null', 0) as agent, replace(company, 'Null', 0) AS company,days_in_waiting_list, replace(adr, 'Null', 0) as adr,
+required_car_parking_spaces,total_of_special_requests 
+into FactHotelBookings
+from hotel_bookings as A
+LEFT join DimHotelType as B on A.hotel = B.HoteltypeDescr
+join DimReservationStatus as R on A.reservation_status = R.ReservationStatusDescr
+left join DimCustomerType as C on A.customer_type = C.CustomerTypeDescr
+LEFT join DimDepositType as D on A. deposit_type = D.DepositTypeDescr
+left join DimRoomType as RTRes on A.reserved_room_type = RTRes.Type
+left join DimRoomType as RTas on A.assigned_room_type = RTas.Type
+join DimCountry as Cou on A.country = Cou.CountryDescr 
+left join DimSegment s_market on A.market_segment = s_market.SegmentDescr
+left join DimSegment s_ds_chnl on A.distribution_channel = s_ds_chnl. SegmentDescr
+LEFT join DimMealType as Mea on A.meal = Mea.MealTypeDescr
+
+---I HAVE TO RE-CREATE THE dim RESERVED ROOM Type:  
+--- Creating the Dim Room Type ID , There was a problem because Both reserved and assigned room types had the same codes and in order to create the Dim Room Type ID 
+---and to ensure that unique values are counted, The following code was used to correct for the dublicate values:
+
+create table DimRoomType (
+room_type_id smallint identity(1,1),
+type varchar(10)
+);
+with t as (
+select distinct reserved_room_type as room_type
+from hotel_bookings
+union
+select distinct assigned_room_type
+from hotel_bookings
+)
+insert into DimRoomType
+select distinct room_type
+from t
+
+
 
 
 

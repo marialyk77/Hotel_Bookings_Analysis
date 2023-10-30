@@ -1,0 +1,122 @@
+---Number of bookings
+
+select count(reservation_status_date) as num_bookings
+from hotel_bookings 
+
+---Number of bookings by month
+
+
+select arrival_date_month, 
+count(ReservationStatusID) as count_bookings
+from FactHotelBookings
+group by arrival_date_month, arrival_date_year
+order by count_bookings DESC 
+
+---Number of booking per country of origin
+
+select count(FactHotelBookings.CountryID) AS num_bookings, dbo.DimCountry.CountryDescr as country_name 
+from FactHotelBookings 
+Join dbo.DimCountry
+on FactHotelBookings.CountryID = DimCountry.CountryID
+Group by dbo.DimCountry.CountryDescr
+order by num_bookings desc
+
+
+---Number of bookings per hotel type
+
+SELECT HoteltypeDescr, count(ReservationStatusID) as num_bookings_hoteltype
+FROM FactHotelBookings
+Join DimHotelType
+ON FactHotelBookings.HotelTypeID = DimHotelType.HotelTypeID
+GROUP BY HoteltypeDescr
+
+
+---How many bookings have been canceled?--- Here 1 = is cancelled, 0 = not cancelled. Summing up the Collumn gives us the total cancelled. 
+
+SELECT SUM(is_canceled) AS Num_Bookings_Canceled
+FROM FactHotelBookings
+
+--- What is the percent of cancelled: 
+
+SELECT SUM(is_canceled) * 1.0 / Count(ReservationStatusID) * 100
+FROM FactHotelBookings
+
+---What is the average lead time?
+
+SELECT AVG(lead_time) AS Avg_leadTime
+FROM FactHotelBookings
+
+
+--- What is the month with the most bookings?
+--- We have first to find the num of reservations per month and then the top month. 
+
+;WITH mx AS 
+(SELECT arrival_date_month, COUNT(*) AS Month_Max_Bookings
+FROM FactHotelBookings
+GROUP BY arrival_date_month),
+mx2 AS (
+SELECT MAX(Month_Max_Bookings) AS Max_Month
+FROM mx)
+SELECT arrival_date_month 
+FROM mx,mx2 --- here we do not need a join, we can take both tables like this---
+WHERE Month_Max_Bookings = Max_Month
+
+
+---What is the arrival date – week number with the most arrivals?
+
+WITH ad AS
+(SELECT arrival_date, COUNT(*) AS Arrival_Date_MOST
+FROM FactHotelBookings
+GROUP BY arrival_date), 
+adm AS (
+SELECT MAX(Arrival_Date_MOST) AS Day_with_Most_Arrivals
+from ad) 
+SELECT arrival_date, DATEPART(ww, arrival_date) AS WEEK_THE_MOST
+FROM ad, adm 
+WHERE Arrival_Date_MOST = Day_with_Most_Arrivals
+
+---What is the average stay on weekend nights?
+SELECT AVG(stays_in_weekend_nights *1.0) 
+FROM FactHotelBookings
+
+
+---Find how many bookings per hotel type has more than 2 children
+
+SELECT HotelTypeDescr, 
+count(*) AS Bookings_More_Than_Two_chil
+from FactHotelBookings
+JOIN DimHotelType
+ON FactHotelBookings.HotelTypeID = DimHotelType.HotelTypeID
+WHERE children > 2
+group by HotelTypeDescr
+
+---Find the deposit type trend (whether the most bookings has or not deposit)
+SELECT DepositTypeDescr, COUNT(*) AS trend
+FROM FactHotelBookings f
+join DimDepositType d ON f.DepositTypeID = d.DepositTypeID
+GROUP BY DepositTypeDescr 
+ORDER BY count(*) desc 
+
+---Which agent has the most bookings?
+SELECT agent, COUNT(*) AS AGEN_Most
+FROM FactHotelBookings
+GROUP BY agent
+ORDER BY COUNT(*) desc 
+
+
+---Which dates have the most demanding customers (more than 2) based on special requests? 
+
+SELECT SUM(total_of_special_requests), arrival_date
+FROM FactHotelBookings
+WHERE total_of_special_requests > 2 
+GROUP BY arrival_date
+
+---What is the month with the most cancellations?
+SELECT TOP 1 arrival_date_month, COUNT(*) 
+from FactHotelBookings
+WHERE is_canceled = 1 
+GROUP BY arrival_date_month
+ORDER BY COUNT(*) DESC
+
+
+

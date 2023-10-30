@@ -113,3 +113,89 @@ left join DimSegment s_market on A.market_segment = s_market.SegmentDescr
 left join DimSegment s_ds_chnl on A.distribution_channel = s_ds_chnl. SegmentDescr
 LEFT join DimMealType as Mea on A.meal = Mea.MealTypeDescr
 
+---I HAVE TO RE-CREATE THE dim RESERVED ROOM Type:  
+--- Creating the Dim Room Type ID , There was a problem because Both reserved and assigned room types had the same codes and in order to create the Dim Room Type ID 
+---and to ensure that unique values are counted, The following code was used to correct for the dublicate values:
+
+create table DimRoomType (
+room_type_id smallint identity(1,1),
+type varchar(10)
+);
+with t as (
+select distinct reserved_room_type as room_type
+from hotel_bookings
+union
+select distinct assigned_room_type
+from hotel_bookings
+)
+insert into DimRoomType
+select distinct room_type
+from t
+
+INSERT INTO DimSegment VALUES(0,'Unknown')
+
+SELECT * 
+INTO DimSegment2
+FROM DimSegment
+UNION
+SELECT 0, 'Unknown'
+
+
+
+SELECT * FROM DimHotelType
+
+SELECT * 
+INTO DimCountry2
+FROM DimCountry
+UNION
+SELECT 0, 'Unknown'
+
+SELECT * 
+INTO DimCustomerType2
+FROM DimCustomerType
+UNION
+SELECT 0, 'Unknown'
+
+SELECT * 
+INTO DimDepositType2
+FROM DimDepositType
+UNION
+SELECT 0, 'Unknown'
+
+
+SELECT * 
+INTO DimHotelType2
+FROM DimHotelType
+UNION
+SELECT 0, 'Unknown'
+
+
+
+SELECT * 
+INTO DimMealType2
+FROM DimMealType
+UNION
+SELECT 0, 'Unknown'
+
+SELECT * 
+INTO DimReservationStatus2
+FROM DimReservationStatus
+UNION
+SELECT 0, 'Unknown'
+
+SELECT * 
+INTO DimRoomType2
+FROM DimRoomType
+UNION
+SELECT 0, 'Unknown'
+
+SELECT * 
+INTO DimSegment2
+FROM DimSegment
+UNION
+SELECT 0, 'Unknown'
+
+select * from DimSegment
+
+
+

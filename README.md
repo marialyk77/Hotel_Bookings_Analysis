@@ -120,10 +120,10 @@ XIII.	 From a customer experience perspective, 59.21% of Transient guests choose
                 V.	Segment-Specific Promotions: Tailoring offers for specific segments, especially high-revenue ones like Online TA, is likely to enhance overall revenue.
   
 
-              VI.	Focus on Guest Experience: Considering the high cancellations among Contract and Transient-Party customers, enhancing their experience could lead to more loyalty and fewer cancellations.
+               VI.	Focus on Guest Experience: Considering the high cancellations among Contract and Transient-Party customers, enhancing their experience could lead to more loyalty and fewer cancellations.
  
 
-             VII.	Service Expansion: Given the observed preference for Bed & Breakfast among various customer types, expanding or enhancing this service can capitalize on its popularity. Implementing a feedback mechanism is an excellent recommendation; understanding guest experiences can inform future decisions.
+              VII.	Service Expansion: Given the observed preference for Bed & Breakfast among various customer types, expanding or enhancing this service can capitalize on its popularity. Implementing a feedback mechanism is an excellent recommendation; understanding guest experiences can inform future decisions.
 
 
 Power BI file is available under the link: https://drive.google.com/file/d/1_mQ7oJijFpoYmnxo8p4rC3lKnDfDh0j0/view?usp=drive_link 

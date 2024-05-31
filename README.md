@@ -126,5 +126,5 @@ XIII.	 From a customer experience perspective, 59.21% of Transient guests choose
               VII.	Service Expansion: Given the observed preference for Bed & Breakfast among various customer types, expanding or enhancing this service can capitalize on its popularity. Implementing a feedback mechanism is an excellent recommendation; understanding guest experiences can inform future decisions.
 
 
-Power BI file is available under the link: https://drive.google.com/file/d/1_mQ7oJijFpoYmnxo8p4rC3lKnDfDh0j0/view?usp=drive_link 
+Power BI file is available under the link: https://drive.google.com/drive/folders/113xGjFvnwZh5QIfoZQdsSJFh5BbpEia7?usp=drive_link 
 
